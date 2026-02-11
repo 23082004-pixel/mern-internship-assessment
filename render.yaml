@@ -1,0 +1,27 @@
+services:
+  # Backend API Service
+  - type: web
+    name: mern-internship-backend
+    env: node
+    repo: https://github.com/YOUR_USERNAME/mern-internship-assessment.git
+    rootDir: backend
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: mern-internship-db
+          property: connectionString
+    healthCheckPath: /
+    
+  # MongoDB Database
+  - type: pserv
+    name: mern-internship-db
+    env: docker
+    repo: https://github.com/render-examples/mongo.git
+    disk:
+      name: mern-db-data
+      mountPath: /data/db
+      sizeGB: 1
