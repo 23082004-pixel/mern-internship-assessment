@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+
+.ant-layout-content {
+  padding: 24px;
+  background: #f5f5f5;
+}
+
+/* Custom table styling for dark header */
+.custom-table .ant-table-thead > tr > th {
+  background-color: #4a4a4a !important;
+  color: white !important;
+  border-bottom: 1px solid #4a4a4a !important;
+  font-weight: 600 !important;
+}
+
+.custom-table .ant-table-thead > tr > th:hover {
+  background-color: #5a5a5a !important;
+}
+
+.custom-table .ant-table-tbody > tr > td {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.custom-table .ant-table-tbody > tr:hover > td {
+  background-color: #fafafa;
+}
+
+.table-row-light {
+  background-color: #ffffff;
+}
+
+.table-row-dark {
+  background-color: #fafafa;
+}
+
+/* Performance optimizations */
+.ant-table-wrapper {
+  will-change: transform;
+}
+
+.ant-spin-container {
+  will-change: contents;
+}
+
+/* Smooth transitions */
+.ant-btn {
+  transition: all 0.2s ease;
+}
+
+.ant-input {
+  transition: all 0.2s ease;
+}
+
+/* Pagination styling */
+.ant-pagination .ant-pagination-item-active {
+  background-color: #d4626a;
+  border-color: #d4626a;
+}
+
+.ant-pagination .ant-pagination-item-active a {
+  color: white;
+}
+
+.ant-pagination .ant-pagination-item:hover {
+  border-color: #d4626a;
+}
+
+.ant-pagination .ant-pagination-item:hover a {
+  color: #d4626a;
+}
+
+.ant-pagination .ant-pagination-prev:hover .ant-pagination-item-link,
+.ant-pagination .ant-pagination-next:hover .ant-pagination-item-link {
+  border-color: #d4626a;
+  color: #d4626a;
+}
+
+@media (max-width: 768px) {
+  .ant-layout-content {
+    padding: 16px;
+  }
+}
