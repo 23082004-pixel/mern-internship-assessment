@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://mern-internship-assessment.onrender.com/api';
+const API_BASE_URL = 'https://mern-internship-assessment.onrender.com/api'; // Hardcoded temporarily
 
 const api = axios.create({
   baseURL: API_BASE_URL,
