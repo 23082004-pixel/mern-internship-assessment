@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://mern-internship-assessment.onrender.com/api'; // Hardcoded temporarily
+const API_BASE_URL = 'https://mern-internship-assessment.onrender.com/api'; // Working connection
 
 const api = axios.create({
   baseURL: API_BASE_URL,
