@@ -49,29 +49,53 @@ export const userAPI = {
   },
 
   createUser: (userData) => {
-    const formData = new FormData();
-    Object.keys(userData).forEach(key => {
-      if (userData[key] !== null && userData[key] !== undefined) {
-        formData.append(key, userData[key]);
-      }
-    });
+    // Check if there's a file to upload
+    if (userData.profile && userData.profile instanceof File) {
+      // Send as FormData if there's a file
+      const formData = new FormData();
+      Object.keys(userData).forEach(key => {
+        if (userData[key] !== null && userData[key] !== undefined) {
+          formData.append(key, userData[key]);
+        }
+      });
 
-    return api.post('/users', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    });
+      return api.post('/users', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+    } else {
+      // Send as JSON if no file
+      const jsonData = { ...userData };
+      delete jsonData.profile; // Remove profile field if it's null/undefined
+      
+      return api.post('/users', jsonData, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
   },
 
   updateUser: (id, userData) => {
-    const formData = new FormData();
-    Object.keys(userData).forEach(key => {
-      if (userData[key] !== null && userData[key] !== undefined) {
-        formData.append(key, userData[key]);
-      }
-    });
+    // Check if there's a file to upload
+    if (userData.profile && userData.profile instanceof File) {
+      // Send as FormData if there's a file
+      const formData = new FormData();
+      Object.keys(userData).forEach(key => {
+        if (userData[key] !== null && userData[key] !== undefined) {
+          formData.append(key, userData[key]);
+        }
+      });
 
-    return api.put(`/users/${id}`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    });
+      return api.put(`/users/${id}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+    } else {
+      // Send as JSON if no file
+      const jsonData = { ...userData };
+      delete jsonData.profile; // Remove profile field if it's null/undefined
+      
+      return api.put(`/users/${id}`, jsonData, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
   },
 
   deleteUser: (id) => {
