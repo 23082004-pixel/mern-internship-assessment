@@ -39,17 +39,15 @@ api.interceptors.response.use(
 
 // User API endpoints
 export const userAPI = {
-  // Get all users with pagination
+
   getUsers: (page = 1, limit = 10) => {
-    return api.get(`/users?page=${page}&limit=${limit}`);
+    return api.get(`/api/users?page=${page}&limit=${limit}`);
   },
 
-  // Get user by ID
   getUserById: (id) => {
-    return api.get(`/users/${id}`);
+    return api.get(`/api/users/${id}`);
   },
 
-  // Create new user
   createUser: (userData) => {
     const formData = new FormData();
     Object.keys(userData).forEach(key => {
@@ -57,14 +55,12 @@ export const userAPI = {
         formData.append(key, userData[key]);
       }
     });
-    return api.post('/users', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+
+    return api.post('/api/users', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
 
-  // Update user
   updateUser: (id, userData) => {
     const formData = new FormData();
     Object.keys(userData).forEach(key => {
@@ -72,29 +68,23 @@ export const userAPI = {
         formData.append(key, userData[key]);
       }
     });
-    return api.put(`/users/${id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+
+    return api.put(`/api/users/${id}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
 
-  // Delete user
   deleteUser: (id) => {
-    return api.delete(`/users/${id}`);
+    return api.delete(`/api/users/${id}`);
   },
 
-  // Search users
   searchUsers: (keyword) => {
-    return api.get(`/users/search?keyword=${keyword}`);
+    return api.get(`/api/users/search?keyword=${keyword}`);
   },
 
-  // Export users to CSV
   exportUsers: () => {
-    return api.get('/users/export', {
-      responseType: 'blob',
+    return api.get('/api/users/export', {
+      responseType: 'blob'
     });
   },
 };
-
-export default api;

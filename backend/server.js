@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['https://your-frontend-name.onrender.com', 'http://localhost:3000'],
+  origin: ['https://your-netlify-url.netlify.app', 'http://localhost:3000'],
   credentials: true
 }));
 app.use(express.json());
