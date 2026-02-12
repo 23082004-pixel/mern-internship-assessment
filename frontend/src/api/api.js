@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://mern-internship-assessment.onrender.com';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://mern-internship-assessment.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -41,11 +41,11 @@ api.interceptors.response.use(
 export const userAPI = {
 
   getUsers: (page = 1, limit = 10) => {
-    return api.get(`/api/users?page=${page}&limit=${limit}`);
+    return api.get(`/users?page=${page}&limit=${limit}`);
   },
 
   getUserById: (id) => {
-    return api.get(`/api/users/${id}`);
+    return api.get(`/users/${id}`);
   },
 
   createUser: (userData) => {
@@ -56,7 +56,7 @@ export const userAPI = {
       }
     });
 
-    return api.post('/api/users', formData, {
+    return api.post('/users', formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
@@ -69,21 +69,21 @@ export const userAPI = {
       }
     });
 
-    return api.put(`/api/users/${id}`, formData, {
+    return api.put(`/users/${id}`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
 
   deleteUser: (id) => {
-    return api.delete(`/api/users/${id}`);
+    return api.delete(`/users/${id}`);
   },
 
   searchUsers: (keyword) => {
-    return api.get(`/api/users/search?keyword=${keyword}`);
+    return api.get(`/users/search?keyword=${keyword}`);
   },
 
   exportUsers: () => {
-    return api.get('/api/users/export', {
+    return api.get('/users/export', {
       responseType: 'blob'
     });
   },
