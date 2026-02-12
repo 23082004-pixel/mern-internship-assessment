@@ -10,9 +10,13 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['https://your-netlify-url.netlify.app', 'http://localhost:3000'],
+  origin: [
+    'https://mern-internship-assessment.netlify.app',
+    'http://localhost:3000'
+  ],
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
