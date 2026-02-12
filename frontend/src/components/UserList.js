@@ -96,7 +96,7 @@ const UserList = () => {
     };
 
     loadData();
-  }, [debouncedSearchKeyword, pagination.current, pagination.pageSize]);
+  }, [debouncedSearchKeyword, pagination]);
 
   const handleExport = async () => {
     try {
