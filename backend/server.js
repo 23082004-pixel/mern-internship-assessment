@@ -9,13 +9,7 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: [
-    'https://mern-internship-assessment.netlify.app',
-    'http://localhost:3000'
-  ],
-  credentials: true
-}));
+app.use(cors()); // Allow all origins temporarily
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
