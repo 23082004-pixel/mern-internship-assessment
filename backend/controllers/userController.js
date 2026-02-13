@@ -25,10 +25,12 @@ const createUser = async (req, res) => {
             });
         }
 
-        // Handle profile image
+        // Handle profile image (file is already processed by middleware)
         let profile = null;
         if (req.file) {
-            profile = `/uploads/${req.file.filename}`;
+            profile = req.file.path.replace(/\\/g, '/'); // Convert to forward slashes
+        } else if (req.body && req.body.profile) {
+            profile = req.body.profile;
         }
 
         const user = new User({

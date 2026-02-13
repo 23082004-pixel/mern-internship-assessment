@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const upload = require('../config/multer');
+const fileUpload = require('../middleware/fileUpload');
 const {
     createUser,
     getUsers,
@@ -12,12 +12,12 @@ const {
 } = require('../controllers/userController');
 
 // CRUD Routes
-router.post('/', upload.single('profile'), createUser);
+router.post('/', fileUpload, createUser);
 router.get('/', getUsers);
 router.get('/search', searchUsers);
 router.get('/export', exportUsersToCSV);
 router.get('/:id', getUserById);
-router.put('/:id', upload.single('profile'), updateUser);
+router.put('/:id', fileUpload, updateUser);
 router.delete('/:id', deleteUser);
 
 module.exports = router;
