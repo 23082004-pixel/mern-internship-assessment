@@ -33,9 +33,9 @@ const createUser = async (req, res) => {
                 profile = req.file.path;
                 console.log('Image uploaded to Cloudinary:', profile);
             } else {
-                // Memory storage fallback - image not saved permanently
-                console.log('Image uploaded to memory storage (not permanent)');
-                // Don't set profile - user will be created without image
+                // Memory storage fallback - create a temporary URL for display
+                profile = `data:image/jpeg;base64,${req.file.buffer.toString('base64')}`;
+                console.log('Image uploaded to memory storage (temporary display)');
             }
         } else if (req.body && req.body.profile) {
             profile = req.body.profile;
@@ -162,9 +162,9 @@ const updateUser = async (req, res) => {
                 profile = req.file.path;
                 console.log('Image uploaded to Cloudinary:', profile);
             } else {
-                // Memory storage fallback - image not saved permanently
-                console.log('Image uploaded to memory storage (not permanent)');
-                // Keep existing profile - don't change it
+                // Memory storage fallback - create a temporary URL for display
+                profile = `data:image/jpeg;base64,${req.file.buffer.toString('base64')}`;
+                console.log('Image uploaded to memory storage (temporary display)');
             }
         }
 
