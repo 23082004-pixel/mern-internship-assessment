@@ -255,7 +255,7 @@ const UserList = () => {
       render: (profile) => (
         <Avatar 
           size="small" 
-          src={profile || undefined} 
+          src={profile ? (profile.startsWith('data:') ? profile : `https://mern-internship-assessment.onrender.com${profile}`) : undefined} 
           icon={<UserOutlined />} 
         />
       ),
