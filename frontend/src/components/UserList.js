@@ -96,7 +96,7 @@ const UserList = () => {
     };
 
     loadData();
-  }, [debouncedSearchKeyword, pagination]);
+  }, [debouncedSearchKeyword, pagination.current, pagination.pageSize]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleExport = async () => {
     try {
