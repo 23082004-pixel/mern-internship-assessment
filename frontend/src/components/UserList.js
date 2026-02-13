@@ -39,9 +39,10 @@ const UserList = () => {
   const [searchLoading, setSearchLoading] = useState(false);
   const [pagination, setPagination] = useState({
     current: 1,
-    pageSize: 100,
+    pageSize: 10,
     total: 0,
   });
+  const [totalRecords, setTotalRecords] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [debouncedSearchKeyword, setDebouncedSearchKeyword] = useState('');
   const navigate = useNavigate();
@@ -65,10 +66,7 @@ const UserList = () => {
           const response = await userAPI.searchUsers(debouncedSearchKeyword);
           if (response.data.success) {
             setUsers(response.data.data);
-            setPagination(prev => ({
-              ...prev,
-              total: response.data.count,
-            }));
+            setTotalRecords(response.data.count);
           }
         } catch (error) {
           message.error('Search failed');
@@ -82,10 +80,7 @@ const UserList = () => {
           const response = await userAPI.getUsers(pagination.current, pagination.pageSize);
           if (response.data.success) {
             setUsers(response.data.data);
-            setPagination(prev => ({
-              ...prev,
-              total: response.data.pagination.totalRecords,
-            }));
+            setTotalRecords(response.data.pagination.totalRecords);
           }
         } catch (error) {
           message.error('Failed to fetch users');
@@ -384,7 +379,7 @@ const UserList = () => {
           <Pagination
             current={pagination.current}
             pageSize={pagination.pageSize}
-            total={pagination.total}
+            total={totalRecords}
             onChange={handlePageChange}
             showSizeChanger
             showQuickJumper
