@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: mern-internship-frontend
+    env: static
+    repo: https://github.com/23082004-pixel/mern-internship-assessment.git
+    rootDir: frontend
+    buildCommand: npm run build
+    staticPublishPath: ./build
+    plan: free
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://mern-internship-assessment.onrender.com/api
