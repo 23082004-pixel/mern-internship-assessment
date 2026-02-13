@@ -102,7 +102,7 @@ const UserView = () => {
           <Card style={{ textAlign: 'center' }}>
             <Avatar 
               size={120} 
-              src={user.profile ? `http://localhost:5000${user.profile}` : null}
+              src={user.profile ? `https://mern-internship-assessment.onrender.com${user.profile}` : null}
               icon={<UserOutlined />}
               style={{ marginBottom: 16 }}
             />
