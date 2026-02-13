@@ -25,10 +25,10 @@ const createUser = async (req, res) => {
             });
         }
 
-        // Handle profile image (file is already processed by middleware)
+        // Handle profile image (Cloudinary URL from multer-cloudinary)
         let profile = null;
         if (req.file) {
-            profile = req.file.path.replace(/\\/g, '/'); // Convert to forward slashes
+            profile = req.file.path; // Cloudinary URL
         } else if (req.body && req.body.profile) {
             profile = req.body.profile;
         }
