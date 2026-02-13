@@ -1,9 +1,20 @@
-const { storage } = require('../config/cloudinary');
+const { storage, isCloudinaryConfigured } = require('../config/cloudinary');
 const multer = require('multer');
 
-// Configure multer with Cloudinary storage
+// Configure multer storage based on Cloudinary availability
+let uploadStorage;
+if (isCloudinaryConfigured && storage) {
+  uploadStorage = storage; // Use Cloudinary storage
+  console.log('Using Cloudinary for image uploads');
+} else {
+  // Use memory storage as fallback (images won't be saved but won't break the app)
+  uploadStorage = multer.memoryStorage();
+  console.log('Using memory storage - images will not be saved permanently');
+}
+
+// Configure multer
 const upload = multer({
-  storage: storage,
+  storage: uploadStorage,
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB limit
   },

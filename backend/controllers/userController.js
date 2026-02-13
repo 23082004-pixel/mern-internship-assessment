@@ -25,10 +25,18 @@ const createUser = async (req, res) => {
             });
         }
 
-        // Handle profile image (Cloudinary URL from multer-cloudinary)
+        // Handle profile image (Cloudinary URL from multer-cloudinary or memory storage)
         let profile = null;
         if (req.file) {
-            profile = req.file.path; // Cloudinary URL
+            if (req.file.path) {
+                // Cloudinary URL available
+                profile = req.file.path;
+                console.log('Image uploaded to Cloudinary:', profile);
+            } else {
+                // Memory storage fallback - image not saved permanently
+                console.log('Image uploaded to memory storage (not permanent)');
+                // Don't set profile - user will be created without image
+            }
         } else if (req.body && req.body.profile) {
             profile = req.body.profile;
         }
@@ -146,10 +154,18 @@ const updateUser = async (req, res) => {
             }
         }
 
-        // Handle profile image
+        // Handle profile image (Cloudinary URL from multer-cloudinary or memory storage)
         let profile = user.profile;
         if (req.file) {
-            profile = `/uploads/${req.file.filename}`;
+            if (req.file.path) {
+                // Cloudinary URL available
+                profile = req.file.path;
+                console.log('Image uploaded to Cloudinary:', profile);
+            } else {
+                // Memory storage fallback - image not saved permanently
+                console.log('Image uploaded to memory storage (not permanent)');
+                // Keep existing profile - don't change it
+            }
         }
 
         // Update user
